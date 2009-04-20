@@ -119,7 +119,7 @@ claim can be reevaluated.
 Dressman and colleagues are to be commended for making so much information
 related to their paper available in the supplemental data archives.
 Their harsh response to BC, which includes the claim that BC's analysis
-is ``egregiously flawed'' is completely uncalled for.  Many of the analyses conducted by
+is ``egregiously flawed'', is completely uncalled for.  Many of the analyses conducted by
 BC were undertaken charitably, to find patterns that are consistent with the
 claims of the paper but that were not reconstructible in detail when the avenues
 suggested by the paper were first explored.  Furthermore, much of the analytic
@@ -132,14 +132,19 @@ and software interface are made, complex analyses involving multiple data
 sources can be expressed in a small number of highly platform-independent
 scripts.
 To illustrate this idea,
-this letter and all related data, calculations and graphics, can be reconstructed
-using the Bioconductor package dressCheck, part of the Experimental data series
+this letter and all related data, calculations and graphics, can be obtained
+and concretely reconstructed from conventionally organized source codes
+using the Bioconductor package \textit{dressCheck}, part of the Experimental data series
 at www.bioconductor.org.  This approach exposes my work to scrutiny by
 external analysts, who can see and criticize, correct, or
 reuse every computation that leads to each
 graphic and p-value cited in this letter.  
 This is the level of scrutiny
 that BC exposed themselves to as well in their supplemental archive.
+The work they have done to help clarify the role of pathway activation
+in platinum non-responsive tumors is deserving of thanks, not approbation.
+
+
 %computation is accompanied by source code that can be run in any reasonably
 %modern version of the open source statistical system R.
 
@@ -210,7 +215,7 @@ sco = t(exprs(corr))%*%srcWtsL
 sdys = 1*(sco>median(sco))
 with(pData(corrp116), plot(survfit(Surv(Survival, dead)~sdys,
  subset=CR==0),col=c("blue", "yellow"), lwd=3,
- xlab="Months", ylab="survival (%)", main="(a)"))
+ xlab="Months", ylab="survival (%)", main="(b)"))
 with(pData(corrp116), d2 <<- survdiff(Surv(Survival, dead)~sdys,
  subset=CR==0))
 text(37,.05, paste("logrank p=", round(psurv(d2),3)))
@@ -243,7 +248,7 @@ score, yellow line for high.
 }
 \end{figure}
 
-<<lkmod>>=
+<<lkmod,echo=FALSE,results=hide>>=
 with(pData(corrp116), m2 <<- survreg(Surv(Survival, dead)~sdys+poly(chron(rundate),2),
  subset=CR==0))
 summary(m2)
