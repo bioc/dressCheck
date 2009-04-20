@@ -68,7 +68,7 @@ We center and scale genes:
 scee2f3 = t(scale(t(ee2f3)))
 @
 Here is the heatmap:
-<<doaa,fig=TRUE>>=
+<<doaa2,fig=TRUE>>=
 heatmap(scee2f3)
 @
 We use SVD to obtain the weights, saved to \texttt{ewt}:
@@ -78,7 +78,7 @@ names(ewt) = rownames(ee2f3)
 scoe = t(ee2f3) %*% ewt
 @
 Show the reweighted combinations:
-<<doso,fig=TRUE>>=
+<<doso2,fig=TRUE>>=
 plot(scoe, col=ifelse(e2f3$perturb=="GFP", "green", "red"))
 table(scoe>median(scoe), e2f3$pert)
 e2f3Wts = ewt
