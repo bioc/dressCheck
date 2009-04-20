@@ -1,0 +1,10 @@
+_HiStOrY_V2_
+x\040=\040read.table("srcsig.txt",\040h=FALSE)
+fg
+x\040=\040readLines('srcsig.txt')
+y\040=\040strsplit(x,\040"\040")
+z\040=\040sapply(y,\040"[",\0401)
+z
+Src.probes\040=\040z
+save(Src.probes,\040file="Src.probes.rda")
+savehistory(file="getsrcprobes.hist")

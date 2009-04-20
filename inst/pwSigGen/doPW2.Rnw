@@ -1,0 +1,88 @@
+\documentclass{article}
+\begin{document}
+
+\title{Generating weights to score pathway activity for Dressman et al.}
+\author{VJ Carey}
+
+\section{Introduction}
+
+The \textit{dressCheck} package includes \texttt{pwLines}, a
+retrieval of GSE3151 based on a standard GEOquery call.
+The labeling of pathways perturbed is taken from the GEO web
+page and merged on to the phenoData.
+<<lkd>>=
+library(dressCheck)
+data(pwLines)
+@
+
+\section{The Src pathway}
+
+We have the Src-associated genes from Bild et al.
+<<theb>>=
+data(Src.probes)
+@
+Reduce the expression data to these probes,
+and then to the controls and Src-perturbed samples.
+<<dor>>=
+src = pwLines[Src.probes,]
+src = src[, src$perturb %in% c("GFP", "Src")]
+esrc = exprs(src)
+@
+We center and scale genes:
+<<lks>>=
+scesrc = t(scale(t(esrc)))
+@
+Here is the heatmap:
+<<doaa,fig=TRUE>>=
+heatmap(scesrc)
+@
+We use SVD to obtain the weights, saved to \texttt{swt}:
+<<aiai>>=
+swt = svd(scesrc)$u[,1]
+names(swt) = rownames(scesrc)
+sco = t(esrc) %*% swt
+@
+Show the reweighted combinations:
+<<doso,fig=TRUE>>=
+plot(sco, col=ifelse(src$perturb=="GFP", "green", "red"))
+table(sco>0, src$pert)
+srcWts = swt
+save(srcWts, file="srcWts.rda")
+@
+
+\section{The E2F3 pathway}
+
+We have the E2F3-associated genes from Bild et al.
+<<theb>>=
+data(E2F3sig.probes)
+@
+Reduce the expression data to these probes,
+and then to the controls and Src-perturbed samples.
+<<dor>>=
+e2f3 = pwLines[E2F3sig.probes,]
+e2f3 = e2f3[, e2f3$perturb %in% c("GFP", "E2F3")]
+ee2f3 = exprs(e2f3)
+@
+We center and scale genes:
+<<lks>>=
+scee2f3 = t(scale(t(ee2f3)))
+@
+Here is the heatmap:
+<<doaa,fig=TRUE>>=
+heatmap(scee2f3)
+@
+We use SVD to obtain the weights, saved to \texttt{ewt}:
+<<aiai>>=
+ewt = svd(scee2f3)$u[,1]
+names(ewt) = rownames(ee2f3)
+scoe = t(ee2f3) %*% ewt
+@
+Show the reweighted combinations:
+<<doso,fig=TRUE>>=
+plot(scoe, col=ifelse(e2f3$perturb=="GFP", "green", "red"))
+table(scoe>median(scoe), e2f3$pert)
+e2f3Wts = ewt
+save(e2f3Wts, file="e2f3Wts.rda")
+@
+
+\end{document}

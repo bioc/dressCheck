@@ -1,0 +1,11 @@
+_HiStOrY_V2_
+dir()
+x = readLines("E2F3sig.txt")
+xx = strsplit(x," ")
+xxx = sapply(xx, "[", 1)
+xxx
+E2Fsig.probes = xxx
+E2Fsig.probes
+E2F3sig.probes = xxx
+save(E2F3sig.probes, file="E2F3sig.probes.rda")
+savehistory(file="getE2F3hist.txt")
