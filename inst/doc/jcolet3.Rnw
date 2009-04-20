@@ -238,6 +238,8 @@ dates. (b) Association between Src pathway activation and survival
 among platinum non-responders. 
 (c) Association between E2F3 pathway activation and survival
 among platinum non-responders.  (d) As (c) but for platinum responders.
+For all Kaplan-Meier graphs, blue line is for low pathway activation
+score, yellow line for high.
 }
 \end{figure}
 
