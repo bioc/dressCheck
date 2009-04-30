@@ -1,0 +1,33 @@
+
+Sialidase 1 (lysosomal sialidase) NEU1 U84246
+Translocated promoter region (to activated MET oncogene) TPR NM_003292
+Periplakin PPL NM_002705
+H3 histone, family 3B (H3.3B) H3F3B BC001124
+Zinc finger protein 264 ZNF264 NM_003417
+Proteasome (prosome, macropain) 26S subunit, non-ATPase, 4 PSMD4 AB033605
+Heterogeneous nuclear ribonucleoprotein U HNRPU BC003621
+Peptidylglycine alpha-amidating mono-oxygenase PAM NM_000919
+Glyceronephosphate O-acyltransferase GNPAT NM_014236
+Splicing factor 3a, subunit 3, 60 kd SF3A3 NM_006802
+Glycine cleavage system protein H (aminomethyl carrier) GCSH AW237404
+Reticulocalbin 1, EF-hand calcium binding domain RCN1 NM_002901
+Hypothetical protein FLJ10404 FLJ10404 NM_019057
+Trophinin-associated protein (tastin) TROAP NM_005480
+Tissue inhibitor of metalloproteinase 2 TIMP2 NM_003255
+Ribosomal protein S20 RPS20 BF184532
+PTK7 protein tyrosine kinase 7 PTK7 NM_002821
+Suppressor of cytokine signaling 5 SOCS5 AW664421
+NADH dehydrogenase (ubiquinone) flavoprotein 1, 51 kd NDUFV1 AF092131
+Protein phosphatase 4, regulatory subunit 1 PPP4R1 NM_005134
+Cysteine-rich, angiogenic inducer, 61 CYR61 NM_001554
+MCM4 minichromosome maintenance deficient 4 MCM4 AA604621
+Thyroid hormone receptor-associated protein 1 THRAP1 AB011165
+Calcyclin binding protein///calcyclin binding protein CACYBP BC005975
+Hydroxysteroid (17-beta) dehydrogenase 12 HSD17B12 NM_016142
+DnaJ (Hsp40) homolog, subfamily C, member 9 DNAJC9 BE551340
+Translocated promoter region (to activated MET oncogene) TPR BF110993
+PERP, TP53 apoptosis effector PERP NM_022121 
+Importin 13 IPO13 NM_014652 
+Pleckstrin homology domain interacting protein PHIP BF224151
+Cyclin B2 CCNB2 NM_004701
+CDC5 cell division cycle 5-like (Schizosaccharomyces pombe) CDC5L NM_001253
