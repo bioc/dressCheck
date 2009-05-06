@@ -213,7 +213,7 @@ CC = cut(chron(corrp116$rundate),2)
   subset=CR==0))
 
  with(pData(corrp116), plot(survfit(Surv(Survival, dead)~CC,
-  subset=CR==0),col=c("blue", "yellow"), lwd=3,
+  subset=CR==0),col=c("red", "green"), lwd=3,
   xlab="Months", ylab="survival (%)", main="(b)"))
 text(37,.03, paste("logrank p=", round(psurv(d0),3)))
 
@@ -267,7 +267,7 @@ xx = dev.off()
 \setkeys{Gin}{width=1.10\textwidth}
 \includegraphics{twox3}
 \caption{(a) Variation in expression of RPS11 over array preparation
-dates. (b) Survival distributions for early (blue) and later (yellow)
+dates. (b) Survival distributions for early (red) and later (green)
 array batches among platinum non-responders.  
 (c) Association between Src pathway activation and survival
 among platinum non-responders. 
