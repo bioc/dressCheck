@@ -35,6 +35,7 @@
 \begin{document}
 %\setkeys{Gin}{width=0.55\textwidth}
 
+\section{Introduction}
 
 The interchange between Baggerly, Coombes and Neeley (BCN) and
 Dressman, Potti and Nevins (DPN) in XXX is of broad interest
@@ -50,6 +51,8 @@ along with the GEO submission of Bild et al. (XXX, GSE3156) to raise
 a number of concerns regarding the main paper on targeting treatment
 of ovarian cancer.  I select those that are
 simplest to illustrate and interpret.
+
+\section{Identifier scrambling}
 
 \textbf{First}, the ``corrected RMA'' expression quantifications
 
@@ -124,5 +127,87 @@ series for) 2505 and 1578 respectively.  In their response, DPN acknowledge
 the identifier scrambling and remark that mislabeling only
 affected the publication of data on the web site, not
 the analyses underlying the paper.
+
+The unscrambling using correlation to CEL succeeds for
+116/119 samples.  The unscrambled data are in
+ExpressionSet
+\texttt{corrp116}.
+
+\section{Persistence of batch effects through sparse
+factor regression corrections}
+
+Once the corrected quantifications are properly relabeled
+they can be associated with the clinical data
+appropriately.  They can also be associated with
+processing information in the CEL files.  The
+\texttt{corrp116} ExpressionSet includes this
+information.
+
+<<lk116>>=
+library(chron)
+if (!exists("corrp116")) data(corrp116)
+dt = table(chron(corrp116$rundate))
+cdt = chron(as.numeric(names(dt)))
+names(dt) = cdt
+dt
+@
+
+We will test for differential expression by batch.
+<<lkte,fig=TRUE>>=
+library(limma)
+corrp116$cdate = factor(chron(corrp116$rundate))
+des = model.matrix(~cdate, pData(corrp116))
+if (!exists("f1")) f1 = lmFit(corrp116, des)
+ef1 = eBayes(f1)
+options(digits=4)
+tt = topTable(ef1,2:16)[,-c(2:16)]
+bigtt = topTable(ef1,2:16,n=1000)[,-c(2:16)]
+mm = max(bigtt[,5])
+tops = tt[,1]
+par(mfrow=c(2,2))
+plot(chron(corrp116$rundate), exprs(corrp116)[tops[1],],
+   xlab="array rundate", ylab=tops[1])
+plot(chron(corrp116$rundate), exprs(corrp116)[tops[2],],
+   xlab="array rundate", ylab=tops[2])
+plot(chron(corrp116$rundate), exprs(corrp116)[tops[3],],
+   xlab="array rundate", ylab=tops[3])
+plot(chron(corrp116$rundate), exprs(corrp116)[tops[4],],
+   xlab="array rundate", ylab=tops[4])
+@
+
+The maximum adjusted $p$-value (BH FDR) in the top 1000
+genes is \Sexpr{round(mm,5)}, so there is statistical
+evidence for an association between mean expression
+and run date for many genes.
+
+The display shows that this association can take various
+forms.  For the top two panels, there is indication
+of a downward trend for all samples in late 2002,
+early 2003.  The bottom left panel suggests an
+increasing trend in mean in the same period, and
+the bottom right panel shows that outliers can
+be identified in tests of batch effects.
+
+Baggerly et al show that there is an association
+between survival time of sample and run date
+(and I do so as well in the short letter).
+
+The basic upshot of this section: It is probably
+incorrect to dismiss the possibility of confounding
+of expression-survival associations with run batch.
+We don't know how to adjust for this in a way that
+is completely reliable.  If we take the standard
+epidemiological approach of introducing a factor
+for batch in a survival regression model, we may
+be over-adjusting.  But the retort in the DPN rebuttal
+to BCN, asserting that batch effects cannot be present
+because sparse factor regression corrects for them,
+is incorrect.
+
+\section{Non-reconstructibility of E2F3-survival
+relationship}
+
+The short letter is pretty clear on this.
+
 
 \end{document}
