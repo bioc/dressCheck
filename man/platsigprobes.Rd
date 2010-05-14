@@ -6,7 +6,7 @@
 affymetrix probe identifiers for the platinum responsiveness signature
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+affymetrix probe identifiers for the platinum responsiveness signature
 }
 \usage{data(platsigprobes)}
 \format{

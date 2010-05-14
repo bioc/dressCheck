@@ -3,10 +3,10 @@
 \alias{c119}
 \docType{data}
 \title{
-%%   ~~ data name/kind ... ~~
+an N=119 expression set based on CEL files from JCO.zip
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+an N=119 expression set based on CEL files from JCO.zip
 }
 \usage{data(c119)}
 \format{

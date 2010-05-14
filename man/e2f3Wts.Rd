@@ -7,7 +7,8 @@ Coefficients to weight components of E2F3 pathway to score for activity,
 derived from SVD applied to Bild's data
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Coefficients to weight components of E2F3 pathway to score for activity,
+derived from SVD applied to Bild's data
 }
 \usage{data(e2f3Wts)}
 \format{
