@@ -1,12 +1,13 @@
 \name{corrp116}
 \Rdversion{1.1}
 \alias{corrp116}
+\alias{corrp}
 \docType{data}
 \title{
 Dressman's RMA+SFR corrected quantifications for 116 ovarian cancer samples
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Dressman's RMA+SFR corrected quantifications for 116 ovarian cancer samples
 }
 \usage{data(corrp116)}
 \format{

@@ -7,7 +7,8 @@ Quantifications of 119 ovarian cancer samples as distributed
 at Duke's platinum.php
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Quantifications of 119 ovarian cancer samples as distributed
+at Duke's platinum.php
 }
 \usage{data(DrAsGiven)}
 \format{

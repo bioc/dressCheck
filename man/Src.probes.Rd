@@ -7,7 +7,7 @@ Affymetrix probe identifiers for the Src pathway signature of Bild et al.
 }
 
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Affymetrix probe identifiers for the Src pathway signature of Bild et al.
 }
 \usage{data(Src.probes)}
 \format{

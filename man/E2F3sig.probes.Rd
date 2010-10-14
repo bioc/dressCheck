@@ -6,7 +6,7 @@
 Affymetrix probe identifiers for the E2F3 pathway signature of Bild et al.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+Affymetrix probe identifiers for the E2F3 pathway signature of Bild et al.
 }
 \usage{data(E2F3sig.probes)}
 \format{

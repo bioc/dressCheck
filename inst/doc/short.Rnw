@@ -1,4 +1,9 @@
 
+%\VignetteIndexEntry{short review of dressCheck contents}
+%\VignetteDepends{dressCheck, Biobase}
+%\VignetteKeywords{array analysis reliability}
+%\VignettePackage{dressCheck}
+
 
 
 %

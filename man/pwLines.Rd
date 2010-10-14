@@ -7,7 +7,6 @@ A representation of Bild's HMEC lines for pathway signature identification
 }
 \description{
 A representation of Bild's HMEC lines for pathway signature identification
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(pwLines)}
 \format{
