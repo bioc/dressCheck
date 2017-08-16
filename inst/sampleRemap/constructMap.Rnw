@@ -1,0 +1,89 @@
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{Constructing the map from 'corrected RMA' spreadsheet to CEL files}
+\author{VJ Carey (following concepts of Baggerly and Coombs)}
+\maketitle
+
+
+<<aod,keep.source=TRUE>>=
+library(dressCheck)
+data(corrp)  # direct read of corrected RMA xls/csv
+data(c119)  # justRMA of CELs
+c119r = c119[rownames(corrp),]  # some genes omitted in corrected  RMA, align
+badn = sampleNames(DrAsGiven)
+getMap = function(nm) {  # this will associate column in corrp to column in c119r
+ x9 = corrp[,nm]
+ an = as.numeric
+ cc = sapply(1:length(sampleNames(c119r)), function(x) cor(an(x9), an(exprs(c119r)[,x])))
+ sampleNames(c119)[which.max(cc)]
+}  
+map = sapply(badn, getMap)
+table(table(map))  # some samples don't uniquely map
+options(digits=4)
+cor(cbind(corrp[,c("M3514", "M4161")], 
+  exprs(c119r)[,c("M3514", "M4161")]))
+# from the above we conclude M3514 maps to M3514
+cor(cbind(corrp[,c("D1837", "M359", "M1572")], 
+  exprs(c119r)[,c("D1837", "M359", "M1572")]))
+# from the above we conclude M1572 maps to M359
+
+#from the next, we conclude that M2070 maps to M4161
+cor(cbind(corrp[,c("M2070", "M444", "M4161")], 
+  exprs(c119r)[,c("M2070", "M444", "M4161")]))
+@
+
+Samples with multiple best matches are:
+\begin{verbatim}
+  D1837   M1572   M2070   M3514   M4161    M444
+ "M359"  "M359" "M4161" "M3514" "M3514" "M4161"
+\end{verbatim}
+
+It follows that samples labeled D1837, M4161 and M444 in the
+corrected RMA posting will not be mapped to any CEL images.
+
+<<redo,keep.source=TRUE>>=
+map2 = map[-which(names(map) %in% c("D1837", "M4161", "M444"))]
+corrp116 = corrp[,names(map2)] # restrict to head of map
+colnames(corrp116) = as.character(map2) # rename with tail of map
+@
+
+We will base our main analysis of Dressman's quantifications
+on \texttt{corrp116}.
+
+
+\end{document}
