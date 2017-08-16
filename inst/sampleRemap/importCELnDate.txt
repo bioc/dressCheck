@@ -1,0 +1,43 @@
+library(affy)
+dir()
+c119 = justRMA(filenames=dir())
+c119
+save(c119, file="c119.rda")
+sampleNames(c119)
+alls = sampleNames(c119)
+read.celfile.header(alls[1])
+library(affyio)
+read.celfile.header(alls[1])
+?read.celfile.header
+read.celfile.header(alls[1], "full")
+read.celfile.header(alls[1], "full")$DatH
+getdat = function(x) read.celfile.header
+source("getdate.R")
+getdate(alls[1])
+debug(getdate)
+getdate(alls[1])
+tt
+bb
+bb
+source("getdate.R")
+getdate(alls[1])
+getdate(alls[2])
+alld = sapply(alls, getdate)
+alld
+table(alld)
+source("getdate.R")
+alld = sapply(alls, getdate)
+table(alld)
+sum(.Last.value)
+which(alld=="VE=30")
+debug(getdate)
+getdate(alls[91])
+bb
+Q
+source("getdate.R")
+alld = sapply(alls, getdate)
+table(alld)
+plot(alld)
+alld
+save(alld, file="alld.rda")
+savehistory(file="celwork.hist")

@@ -1,0 +1,134 @@
+_HiStOrY_V2_
+library(Biobase)
+load("c119.rda")
+heatmap(exprs(c119)[1:20,])
+heatmap(exprs(c119)[1:200,])
+heatmap(exprs(c119)[1:500,])
+heatmap(exprs(c119)[1:`500,])
+heatmap(exprs(c119)[1:1500,])
+cc = prcomp(exprs(c119)[1:500,])
+pairs(cc$x[,1:4])
+library(affyio)
+help(package=affyio)
+ovclin = read.csv("OVCclinicalinfo.csv")
+ovclin[1:5,1:5]
+ss = sampleNames(c119)
+ss[1:10]
+trim = gsub("_([0-9]+).cel", "\\1", ss)
+trim[1:10]
+trim = gsub(".*_([0-9]+).cel", "\\1", ss)
+trim[1:10]
+trim
+> read.celfile.header(alls[1], "full")$DatH
+[1] "[0..37764]  0074_1772_H133A_872:CLS=4733 RWS=4733 XIN=3  YIN=3  VE=17        2.0 09/20/02 11:43:50    \024  \024 HG-U133A.1sq \024  \024  \024  \024  \024  \024  \024  \024  \024 6"
+trim = gsub(".*_([DM0-9]+).cel", "\\1", ss)
+trim
+trim = gsub(".*_([DM\.0-9]+).cel", "\\1", ss)
+trim = gsub(".*_([DM\\.0-9]+).cel", "\\1", ss)
+trim
+objects()
+ovclin[,1]
+match(trim, ovclin[,1])
+trim[3]
+ovclin[1]
+ovclin[,1][1]
+match(trim, ovclin[,1])
+ovclin[3,1]
+ovclin[1]
+ovclin[1,1]
+match(trim, ovclin[,1])
+dim(ovclin)
+match(trim, ovclin[,1]) -> MMM
+which(is.na(MMM))
+ovclin[c(11,54),1]
+match(ovclin[,1], trim)
+ovclin[1,1]
+trim[1,1]
+trim[1]
+872 %in% ovclin[,1]
+setdiff(ovclin[,1],trim)
+trim[1]
+ovclin[1,1]
+ovclin[54,1]
+setdiff(trim,ovclin[,1])
+ovc = as.character(ovclin[,1])
+ovc[54]
+ovc[54] = "3250"
+ovc[1]
+trim == "0.08"
+trim == ".08"
+ovc[1] = ".08"
+match(ovc, trim)
+any(is.na(.Last.value))
+ovph = ovclin[match(ovc,trim),]
+ovph[1:5,1:5]
+trim[1:5]
+ovph = ovclin[match(trim,ovc),]
+ovph[1:5,1:5]
+trim[1:5]
+ovph = cbind(fixedid=ovc[match(trim,ovc)], ovph)
+ovph[1:5,1:6]
+rownames(ovph) = as.character(ovph[,1])
+rownames(ovph) == trim
+all(.Last.value)
+celnames = sampleNames(c119)
+celnames[1:5]
+sampleNames(c119) = trim
+library(Biobase)
+ee = new("AnnotatedDataFrame", data=ovph)
+phenoData(c119) = ee
+c119
+c119$celName = celnames
+savehistory(file="doexprSet.hist")
+save(c119, file="c119.rda")
+names(pData(c119))
+names(pData(c119))[4]
+names(pData(c119))[4] = "dead"
+table(c119$dead)
+c119$Surv
+names(c119)[9]
+names(pData(c119))[9]
+names(pData(c119))[9] = "CR"
+save(c119, file="c119.rda")
+savehistory(file="doexprSet.hist")
+load("alld.rda")
+alld
+sampleNames(c119)
+alld[1:4]
+alld[1:7]
+alld[1:9]
+sampleNames(c119)
+alld[1:11]
+c119$rundate = as.character(alld)
+savehistory(file="doexprSet.hist")
+save(c119, file="c119.rda")
+library(limma)
+table(c119$response)
+names(c119)
+names(pData(c119))
+table(c119$CR)
+cdes = model.matrix(~CR, data=pData(c119))
+library(limma)
+f1 = lmFit(c119, cdes)
+ef1 = eBayes(f1)
+topTable(ef1,2)
+rd = model.matrix(~rundate, data=pData(c119))
+f2 = lmFit(c119, rd)
+ef2 = eBayes(f2)
+rd[1:4,]
+topTable(ef2, 2:16)
+plot(c119[15661,])
+plot(exprs(c119)[15661,])
+plot(exprs(c119)[15661,], col=ifelse(c119$CR==1, "red", "green"))
+plot(c119$rundate)
+plot(chron(c119$rundate))
+library(chron)
+plot(chron(c119$rundate))
+plot(exprs(c119)[15661,]~chron(c119$rundate))
+crd = model.matrix(~CR+rundate, data=pData(c119))
+f3 = lmFit(c119, crd)
+ef3 = eBayes(f3)
+topTable(ef3,2)
+plot(exprs(c119)[1457,]~chron(c119$rundate))
+plot(chron(c119$rundate), col=ifelse(c119$CR==1, "red", "green"))
+savehistory(file="dofits.hist")
