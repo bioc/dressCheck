@@ -1,7 +1,7 @@
 Package: dressCheck
 Title: data and software for checking Dressman JCO 25(5) 2007
 Description: data and software for checking Dressman JCO 25(5) 2007
-Version: 0.29.0
+Version: 0.30.0
 Author: Vincent Carey <stvjc@channing.harvard.edu>
 Maintainer: Vincent Carey <stvjc@channing.harvard.edu>
 Depends: R (>= 2.10.1), methods, Biobase (>= 2.5.5)
